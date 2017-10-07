@@ -31,7 +31,13 @@ class Simon
   end
 
   def require_sequence
-
+    @seq.each do |choice|
+      input = gets.chomp
+      if color[0] != input
+        @game_over = true
+        break
+      end
+    end
   end
 
   def add_random_color
@@ -51,4 +57,9 @@ class Simon
     @game_over = false
     @seq = []
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  new_game = Simon.new
+  new_game.play
 end
