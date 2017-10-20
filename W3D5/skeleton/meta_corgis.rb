@@ -107,6 +107,8 @@ class MetaCorgiSnacks
   def initialize(snack_box, box_id)
     @snack_box = snack_box
     @box_id = box_id
+    ##still need to figure this out from solns. grep?
+    snack_box.methods.grep(/^get_(.*)_info$/) { MetaCorgiSnacks.define_snack $1 }
   end
 
   def method_missing(name, *args)
@@ -124,5 +126,16 @@ class MetaCorgiSnacks
 
   def self.define_snack(name)
     # Your code goes here...
+    define_method(name) do
+      define_method(name) do
+      info = @snack_box.send("get_#{name}_info", @box_id)
+      tastiness = @snack_box.send("get_#{name}_tastiness", @box_id)
+      display_name = "#{name.split('_').map(&:capitalize).join(' ')}"
+      result = "#{display_name}: #{info}: #{tastiness}"
+      if tastiness > 30
+        return "* #{result}"
+      else
+        return result
+      end
   end
 end
