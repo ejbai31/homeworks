@@ -21,29 +21,26 @@ View.prototype.exercise0 = function () {
 View.prototype.exercise1 = function () {
   //Challenge: Give every square the class 'orange'
   //Result: Every square should turn orange (we already have a CSS rule)
-
-  //your code here!
+  $("li").addClass("orange");
 };
 
 View.prototype.exercise2 = function () {
   //Challenge: Remove every square
   //Result: Every square vanishes
-
-  //your code here!
+  $(".square").remove();
 };
 
 View.prototype.exercise3 = function () {
   //Challenge: Add an <h1> with the text 'i love jquery' under the grid.
   //Result: An <h1> with the text 'i love jquery' appears under the grid.
-
-  //your code here!
+  const h1 = $("<h1>").text("I LOVE JQUERY");
+  $("#easel").append(h1);
 };
 
 View.prototype.exercise4 = function () {
   //Challenge: Write your first name in every other square.
   //Result: Your name appears in every other square.
-
-  //your code here!
+  $(".square:nth-child(even)").text("ED");
 };
 
 View.prototype.exercise5 = function () {
@@ -53,8 +50,9 @@ View.prototype.exercise5 = function () {
 
   //hint: checkout the addRow function at the bottom of the file: we set the
   //  'data-pos' of every square
-
-  //your code here!
+  $(".square").on("click", function(e){
+    alert($(e.target).data("pos"));
+  });
 };
 
 View.prototype.exercise6 = function () {
@@ -64,7 +62,9 @@ View.prototype.exercise6 = function () {
 
   //hint: use window._randomColorString() (defined at top) to get a random color!
 
-  //your code here!
+  $(".square").each((i, el) =>{
+    $(el).css("background-color", window._randomColorString);
+  });
 };
 
 View.prototype.exercise7 = function(){
@@ -73,8 +73,10 @@ View.prototype.exercise7 = function(){
   //console. The color won't be the color's name, but its rbg value.
   //You should push the button for exercise 6 first to try it on the
   //rainbow.
-
-  //your code here!
+  $("#easel").on("mouseenter", ".square", function(e){
+    const $s = $(e.currentTarget);
+    console.log($s.css("background-color"));
+  });
 };
 
 
