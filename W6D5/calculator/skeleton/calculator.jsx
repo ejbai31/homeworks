@@ -4,6 +4,11 @@ class Calculator extends React.Component{
   constructor(props){
     super(props);
     //your code here
+    this.state = { first: "", second: "", result: 0};
+    this.first = this.first.bind(this);
+    this.second = this.second.bind(this);
+    this.add = this.add.bind(this);
+    this.subtract = this.substract.bind(this);
   }
 
   //your code here
